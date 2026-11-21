@@ -75,7 +75,22 @@ h1, h2, h3 { margin: 0; font-family: var(--font-head); letter-spacing: -0.02em; 
   transition: color 0.3s;
 }
 .nav-links a:hover, .nav-links a.active { color: #fff; }
-.nav-actions { display: flex; gap: 8px; }
+.nav-actions { display: flex; gap: 8px; align-items: center; }
+
+/* Переключатель языка RU / EN */
+.lang-switch {
+  display: flex; height: 40px; padding: 3px;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: rgba(9, 9, 11, 0.8);
+}
+.lang-switch button {
+  min-width: 34px; padding: 0 8px; border: 0; border-radius: 4px;
+  background: transparent; color: var(--muted);
+  font: 600 12px "Noto Sans", sans-serif; cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+.lang-switch button:hover { color: #fff; }
+.lang-switch button.active { background: var(--secondary); color: #fff; }
 
 .icon-btn {
   display: grid; place-items: center;
@@ -356,6 +371,11 @@ h1, h2, h3 { margin: 0; font-family: var(--font-head); letter-spacing: -0.02em; 
   margin-bottom: 32px;
 }
 .p-downloads { display: flex; gap: 12px; flex-wrap: wrap; }
+.bug p { margin: 0 0 14px; font-size: 13px; }
+.bug-btn { width: 100%; }
+.bug-alt { display: block; margin-top: 10px; text-align: center; font-size: 12px; color: var(--muted); transition: color 0.3s; }
+.bug-alt:hover { color: var(--teal); }
+
 .extra-links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
 .extra-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); transition: color 0.3s; }
 .extra-link svg { width: 13px; height: 13px; }

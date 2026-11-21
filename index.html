@@ -21,17 +21,21 @@
       </a>
 
       <nav class="nav-links" id="navLinks">
-        <a href="#/projects" data-route="projects">Проекты</a>
+        <a href="#/projects" data-route="projects" data-i18n="nav.projects">Проекты</a>
         <a href="#/windows" data-route="windows">Windows</a>
         <a href="#/android" data-route="android">Android</a>
-        <a href="#/install" data-route="install">Как установить</a>
+        <a href="#/install" data-route="install" data-i18n="nav.install">Как установить</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="#/projects" class="icon-btn" id="searchBtn" aria-label="Поиск">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button data-lang="ru">RU</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <a href="#/projects" class="icon-btn" id="searchBtn" aria-label="Поиск" data-i18n-label="nav.search">
           <svg viewBox="0 0 24 24"><path d="M10 3a7 7 0 1 0 4.2 12.6l5.1 5.1 1.4-1.4-5.1-5.1A7 7 0 0 0 10 3zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
         </a>
-        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Меню">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Меню" data-i18n-label="nav.menu">
           <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
         </button>
       </div>
@@ -50,6 +54,7 @@
     </div>
   </footer>
 
+  <script src="js/i18n.js"></script>
   <script src="js/projects.js"></script>
   <script src="js/fx.js"></script>
   <script src="js/app.js"></script>

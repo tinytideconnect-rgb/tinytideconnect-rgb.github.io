@@ -198,10 +198,12 @@
   document.addEventListener("click", (e) => {
     const a = e.target.closest && e.target.closest("a[download]");
     if (!a) return;
-    const name = a.getAttribute("download") || "файл";
+    const tr = (k) => (window.I18N ? window.I18N.t(k) : k);
+    const name = a.getAttribute("download") || tr("file");
     toast.innerHTML =
       '<span class="toast-icon"><svg viewBox="0 0 24 24"><path d="M9.5 16.2 5.3 12l-1.4 1.4 5.6 5.6L20.1 8.4 18.7 7z"/></svg></span>' +
-      `<span><strong>Загрузка началась</strong><small></small></span>`;
+      "<span><strong></strong><small></small></span>";
+    toast.querySelector("strong").textContent = tr("downloadStarted");
     toast.querySelector("small").textContent = name;
     toast.classList.add("show");
     clearTimeout(toastTimer);
