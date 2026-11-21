@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1a2e"/>
+      <stop offset="1" stop-color="#03080f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.46" r="0.45">
+      <stop offset="0" stop-color="#13B9FD" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#13B9FD" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#13B9FD" fill-opacity="0.12"/>
+    </pattern>
+    <linearGradient id="diag" gradientUnits="userSpaceOnUse" x1="0" y1="40" x2="0" y2="216">
+      <stop offset="0" stop-color="#013A6B"/>
+      <stop offset="0.3" stop-color="#02569B"/>
+      <stop offset="0.6" stop-color="#0175C2"/>
+      <stop offset="0.85" stop-color="#0175C2"/>
+      <stop offset="1" stop-color="#02569B"/>
+    </linearGradient>
+    <linearGradient id="fadeT" gradientUnits="userSpaceOnUse" x1="0" y1="95" x2="0" y2="124">
+      <stop offset="0" stop-color="#013A6B" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#013A6B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeB" gradientUnits="userSpaceOnUse" x1="0" y1="161" x2="0" y2="134">
+      <stop offset="0" stop-color="#013A6B" stop-opacity="0.67"/>
+      <stop offset="1" stop-color="#013A6B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="top" gradientUnits="userSpaceOnUse" x1="64" y1="0" x2="222" y2="0">
+      <stop offset="0" stop-color="#7FDBFF"/>
+      <stop offset="1" stop-color="#13B9FD"/>
+    </linearGradient>
+    <linearGradient id="bottom" gradientUnits="userSpaceOnUse" x1="192" y1="0" x2="34" y2="0">
+      <stop offset="0" stop-color="#0175C2"/>
+      <stop offset="1" stop-color="#13B9FD"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#dots)"/>
+  <rect width="1280" height="720" fill="url(#glow)"/>
+
+  <!-- «волны» связи -->
+  <g fill="none" stroke="#13B9FD" stroke-dasharray="6 10">
+    <circle cx="640" cy="330" r="190" stroke-opacity="0.25"/>
+    <circle cx="640" cy="330" r="270" stroke-opacity="0.15"/>
+    <circle cx="640" cy="330" r="350" stroke-opacity="0.08"/>
+  </g>
+
+  <g transform="translate(640 330) scale(1.25) translate(-128 -128)">
+    <polygon points="70,40 122,40 186,216 134,216" fill="url(#diag)"/>
+    <polygon points="90,96 142,96 152,124 100,124" fill="url(#fadeT)"/>
+    <polygon points="103,134 155,134 166,160 114,160" fill="url(#fadeB)"/>
+    <polygon points="70,40 194,40 222,68 194,96 90,96" fill="url(#top)"/>
+    <polygon points="62,160 166,160 186,216 62,216 34,188" fill="url(#bottom)"/>
+    <polygon points="70,40 194,40 208,54 75,54" fill="#fff" fill-opacity="0.22"/>
+    <polygon points="62,160 166,160 170,172 50,172" fill="#fff" fill-opacity="0.22"/>
+  </g>
+</svg>

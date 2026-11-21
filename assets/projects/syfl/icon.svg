@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#143559"/>
+      <stop offset="1" stop-color="#06121f"/>
+    </linearGradient>
+    <linearGradient id="diag" gradientUnits="userSpaceOnUse" x1="0" y1="40" x2="0" y2="216">
+      <stop offset="0" stop-color="#013A6B"/>
+      <stop offset="0.3" stop-color="#02569B"/>
+      <stop offset="0.6" stop-color="#0175C2"/>
+      <stop offset="0.85" stop-color="#0175C2"/>
+      <stop offset="1" stop-color="#02569B"/>
+    </linearGradient>
+    <linearGradient id="fadeT" gradientUnits="userSpaceOnUse" x1="0" y1="95" x2="0" y2="124">
+      <stop offset="0" stop-color="#013A6B" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#013A6B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeB" gradientUnits="userSpaceOnUse" x1="0" y1="161" x2="0" y2="134">
+      <stop offset="0" stop-color="#013A6B" stop-opacity="0.67"/>
+      <stop offset="1" stop-color="#013A6B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="top" gradientUnits="userSpaceOnUse" x1="64" y1="0" x2="222" y2="0">
+      <stop offset="0" stop-color="#7FDBFF"/>
+      <stop offset="1" stop-color="#13B9FD"/>
+    </linearGradient>
+    <linearGradient id="bottom" gradientUnits="userSpaceOnUse" x1="192" y1="0" x2="34" y2="0">
+      <stop offset="0" stop-color="#0175C2"/>
+      <stop offset="1" stop-color="#13B9FD"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <g transform="translate(128 128) scale(0.62) translate(-128 -128)">
+    <polygon points="70,40 122,40 186,216 134,216" fill="url(#diag)"/>
+    <polygon points="90,96 142,96 152,124 100,124" fill="url(#fadeT)"/>
+    <polygon points="103,134 155,134 166,160 114,160" fill="url(#fadeB)"/>
+    <polygon points="70,40 194,40 222,68 194,96 90,96" fill="url(#top)"/>
+    <polygon points="62,160 166,160 186,216 62,216 34,188" fill="url(#bottom)"/>
+    <polygon points="70,40 194,40 208,54 75,54" fill="#fff" fill-opacity="0.22"/>
+    <polygon points="62,160 166,160 170,172 50,172" fill="#fff" fill-opacity="0.22"/>
+  </g>
+</svg>

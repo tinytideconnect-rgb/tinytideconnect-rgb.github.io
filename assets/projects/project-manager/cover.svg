@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14102a"/>
+      <stop offset="1" stop-color="#0a0c14"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.64" cy="0.48" r="0.5">
+      <stop offset="0" stop-color="#7c5cff" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#7c5cff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="icon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#7c5cff" stroke-opacity="0.07"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#grid)"/>
+  <rect width="1280" height="720" fill="url(#glow)"/>
+
+  <!-- карточки проектов, как в приложении -->
+  <g font-family="Segoe UI, Noto Sans, sans-serif">
+    <g transform="translate(560 150)" opacity="0.55">
+      <rect width="560" height="96" rx="16" fill="#181c26" stroke="#262b38"/>
+      <rect x="22" y="24" width="48" height="48" rx="12" fill="#3b82f6"/>
+      <rect x="90" y="30" width="180" height="14" rx="7" fill="#e7e9f0" fill-opacity="0.8"/>
+      <rect x="90" y="56" width="120" height="10" rx="5" fill="#8a90a2"/>
+      <rect x="430" y="30" width="108" height="36" rx="18" fill="#252a38"/>
+    </g>
+    <g transform="translate(600 270)">
+      <rect width="560" height="96" rx="16" fill="#1f2431" stroke="#7c5cff" stroke-opacity="0.6"/>
+      <rect x="22" y="24" width="48" height="48" rx="12" fill="#478cbf"/>
+      <rect x="90" y="30" width="210" height="14" rx="7" fill="#e7e9f0"/>
+      <rect x="90" y="56" width="140" height="10" rx="5" fill="#8a90a2"/>
+      <rect x="410" y="28" width="128" height="40" rx="20" fill="#7c5cff"/>
+      <path d="M445 40l12 8-12 8z" fill="#fff"/>
+      <rect x="465" y="43" width="52" height="10" rx="5" fill="#fff"/>
+    </g>
+    <g transform="translate(560 390)" opacity="0.55">
+      <rect width="560" height="96" rx="16" fill="#181c26" stroke="#262b38"/>
+      <rect x="22" y="24" width="48" height="48" rx="12" fill="#10b981"/>
+      <rect x="90" y="30" width="150" height="14" rx="7" fill="#e7e9f0" fill-opacity="0.8"/>
+      <rect x="90" y="56" width="100" height="10" rx="5" fill="#8a90a2"/>
+      <rect x="430" y="30" width="108" height="36" rx="18" fill="#252a38"/>
+    </g>
+  </g>
+
+  <!-- иконка -->
+  <g transform="translate(400 180) rotate(-8)">
+    <rect width="200" height="200" rx="44" fill="url(#icon)"/>
+    <path d="M48 62 88 100 48 138M104 138h44" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

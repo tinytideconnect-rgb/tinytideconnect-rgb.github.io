@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiny Tide</title>
+  <meta name="description" content="Tiny Tide — проекты для Windows и Android, бесплатно для скачивания">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Плавающая навигация -->
+  <header class="nav" id="nav">
+    <div class="nav-bar">
+      <a href="#/" class="brand">
+        <img src="assets/logo.svg" alt="" class="brand-logo">
+        <span class="brand-name" id="brandName">Tiny Tide</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#/projects" data-route="projects">Проекты</a>
+        <a href="#/windows" data-route="windows">Windows</a>
+        <a href="#/android" data-route="android">Android</a>
+        <a href="#/install" data-route="install">Как установить</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#/projects" class="icon-btn" id="searchBtn" aria-label="Поиск">
+          <svg viewBox="0 0 24 24"><path d="M10 3a7 7 0 1 0 4.2 12.6l5.1 5.1 1.4-1.4-5.1-5.1A7 7 0 0 0 10 3zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
+        </a>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Меню">
+          <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="" class="brand-logo">
+        <span class="brand-name" id="footerName">Tiny Tide</span>
+      </div>
+      <span class="muted" id="footerCopy"></span>
+    </div>
+  </footer>
+
+  <script src="js/projects.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
