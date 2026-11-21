@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.bestplayer",
+      "sha256_cert_fingerprints": [
+        "94:D2:58:F0:E9:81:CC:80:71:BE:20:AB:5F:3F:FB:0D:6C:F5:85:FC:BD:63:42:2F:35:BF:0E:E9:EB:79:57:54"
+      ]
+    }
+  }
+]

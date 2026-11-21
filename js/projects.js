@@ -54,44 +54,72 @@ const RELEASES = "https://github.com/tinytideconnect-rgb/tinytideconnect-rgb.git
 
 window.PROJECTS = [
   {
-    // Черновик: проект ещё в работе. Когда будут готовы файлы —
-    // убрать upcoming, вписать url/size, версию, дату и скриншоты.
     id: "lumovibe",
     title: "LumoVibe",
     short: {
-      ru: "Бесплатный музыкальный плеер: найдите трек — он заиграет сразу и сохранится в библиотеку.",
-      en: "A free music player: find a track — it starts playing right away and is saved to your library.",
+      ru: "Бесплатный музыкальный плеер: найдите трек — он заиграет через пару секунд. «Моя волна», тексты, офлайн.",
+      en: "A free music player: find a track and it plays in a couple of seconds. My Wave, lyrics, offline.",
     },
     description: {
       ru:
-        "LumoVibe — бесплатный музыкальный плеер для телефона и компьютера. Найдите трек по названию или вставьте ссылку: музыка начнёт играть через пару секунд, а файл параллельно сохранится в вашу библиотеку.\n\n" +
-        "Скачанное слушается без интернета. Плейлисты, страницы исполнителей, тексты песен, фоновое воспроизведение с управлением из уведомления, а на Windows — сворачивание в трей и медиа-клавиши клавиатуры.\n\n" +
-        "Библиотеку можно синхронизировать между устройствами через свой аккаунт Google.",
+        "LumoVibe — бесплатный музыкальный плеер для телефона и компьютера. Найдите трек по названию или вставьте ссылку — из YouTube, YouTube Music, Spotify и других сервисов: музыка заиграет через пару секунд. Понравившееся одним нажатием скачивается и потом играет без интернета.\n\n" +
+        "«Моя волна» под настроение, «Микс дня» и подборки по вашим вкусам, радио по любому треку, страницы исполнителей, тексты песен, импорт плейлистов из Spotify. Дизлайк убирает трек из подборок.\n\n" +
+        "Звук: эквалайзер, выравнивание громкости, плавные переходы без пауз, скорость и тон. Обложка и фон плеера двигаются в такт музыке. Есть будильник с музыкой, таймер сна и режим «В машине».\n\n" +
+        "Библиотека, плейлисты и лайки синхронизируются между телефоном и ПК через ваш аккаунт Google, а начатый трек можно продолжить на другом устройстве с того же места. Поделитесь треком ссылкой или QR-кодом — у кого стоит LumoVibe, она откроется прямо в приложении. Интерфейс на русском и английском.",
       en:
-        "LumoVibe is a free music player for your phone and PC. Search for a track by name or paste a link: the music starts in a couple of seconds while the file is saved to your library in the background.\n\n" +
-        "Everything you download plays offline. Playlists, artist pages, lyrics, background playback with notification controls, and on Windows — minimize to tray and keyboard media keys.\n\n" +
-        "Your library can be synced between devices with your Google account.",
+        "LumoVibe is a free music player for your phone and PC. Search for a track by name or paste a link — from YouTube, YouTube Music, Spotify and other services: the music starts in a couple of seconds. Anything you like downloads with one tap and then plays offline.\n\n" +
+        "My Wave for every mood, a Daily Mix and picks for your taste, radio from any track, artist pages, lyrics, Spotify playlist import. A dislike keeps a track out of your mixes.\n\n" +
+        "Sound: equalizer, volume normalization, gapless playback and crossfade, speed and pitch. The cover and background move to the beat. There's also a music alarm, a sleep timer and a car mode.\n\n" +
+        "Your library, playlists and likes sync between phone and PC with your Google account, and a track you started can be continued on another device from the same spot. Share a track with a link or QR code — if the other person has LumoVibe, it opens right in the app. Interface in English and Russian.",
     },
     category: { ru: "Музыка", en: "Music" },
-    tags: { ru: ["Плеер", "Офлайн", "Плейлисты", "Тексты песен"], en: ["Player", "Offline", "Playlists", "Lyrics"] },
+    tags: { ru: ["Плеер", "Офлайн", "Плейлисты", "Тексты песен", "Моя волна"], en: ["Player", "Offline", "Playlists", "Lyrics", "My Wave"] },
     colors: ["#2a1352", "#FF4F8B"],
     icon: "assets/projects/lumovibe/icon.svg",
     cover: "assets/projects/lumovibe/cover.svg",
-    screenshots: [],
+    // Скриншоты сняты на обоих языках интерфейса — показываем на языке посетителя.
+    screenshots: {
+      ru: [
+        { src: "assets/projects/lumovibe/pc-ru-1-home.jpg", caption: "Главная: «Моя волна», «Микс дня» и подборки" },
+        { src: "assets/projects/lumovibe/pc-ru-2-player.jpg", caption: "Плеер и очередь — обложка двигается в такт музыке" },
+        { src: "assets/projects/lumovibe/pc-ru-3-search.jpg", caption: "Поиск по названию или ссылке" },
+        { src: "assets/projects/lumovibe/pc-ru-4-artist.jpg", caption: "Страница исполнителя: альбомы и похожие артисты" },
+        { src: "assets/projects/lumovibe/pc-ru-5-library.jpg", caption: "Библиотека: скачанное и треки на устройстве" },
+        { src: "assets/projects/lumovibe/pc-ru-6-sound.jpg", caption: "Звук: эквалайзер, скорость, переходы без пауз" },
+        { src: "assets/projects/lumovibe/phone-ru-1-foryou.jpg", caption: "Android: «Для вас» — «Моя волна» и «Микс дня»", phone: true },
+        { src: "assets/projects/lumovibe/phone-ru-2-stats.jpg", caption: "Android: статистика прослушиваний за 30 дней", phone: true },
+        { src: "assets/projects/lumovibe/phone-ru-3-library.jpg", caption: "Android: библиотека", phone: true },
+        { src: "assets/projects/lumovibe/phone-ru-4-playlists.jpg", caption: "Android: плейлисты и импорт", phone: true },
+        { src: "assets/projects/lumovibe/phone-1-player.jpg", caption: "Android: плеер", phone: true },
+      ],
+      en: [
+        { src: "assets/projects/lumovibe/pc-en-1-home.jpg", caption: "Home: My Wave, Daily Mix and picks for you" },
+        { src: "assets/projects/lumovibe/pc-en-2-player.jpg", caption: "Player and queue — the cover moves to the beat" },
+        { src: "assets/projects/lumovibe/pc-en-3-search.jpg", caption: "Search by name or link" },
+        { src: "assets/projects/lumovibe/pc-en-4-artist.jpg", caption: "Artist page: albums and similar artists" },
+        { src: "assets/projects/lumovibe/pc-en-5-library.jpg", caption: "Library: downloads and tracks on the device" },
+        { src: "assets/projects/lumovibe/pc-en-6-sound.jpg", caption: "Sound: equalizer, speed, gapless transitions" },
+        { src: "assets/projects/lumovibe/phone-en-1-foryou.jpg", caption: "Android: For you — My Wave and Daily Mix", phone: true },
+        { src: "assets/projects/lumovibe/phone-en-2-stats.jpg", caption: "Android: your last 30 days of listening", phone: true },
+        { src: "assets/projects/lumovibe/phone-en-3-library.jpg", caption: "Android: library", phone: true },
+        { src: "assets/projects/lumovibe/phone-en-4-playlists.jpg", caption: "Android: playlists and import", phone: true },
+        { src: "assets/projects/lumovibe/phone-1-player.jpg", caption: "Android: player", phone: true },
+        { src: "assets/projects/lumovibe/phone-en-5-lyrics.jpg", caption: "Android: lyrics right in the player", phone: true },
+      ],
+    },
     featured: true,
-    upcoming: true,
-    version: "0.1.0",
+    version: "1.0.0",
     updated: "2026-11-21",
     downloads: {
-      windows: { url: "", size: "", file: "LumoVibe-Setup-0.1.0.exe" },
-      android: { url: "", size: "", file: "LumoVibe.apk" },
+      windows: { url: RELEASES + "lumovibe-v1.0.0/LumoVibe-Setup-1.0.0.exe", size: "91 МБ", file: "LumoVibe-Setup-1.0.0.exe" },
+      android: { url: RELEASES + "lumovibe-v1.0.0/LumoVibe.apk", size: "68 МБ", file: "LumoVibe.apk" },
     },
     extraFiles: [
       {
         platform: "android",
         label: { ru: "APK для старых 32-битных телефонов", en: "APK for older 32-bit phones" },
-        url: "",
-        size: "",
+        url: RELEASES + "lumovibe-v1.0.0/LumoVibe-old-32bit-phones.apk",
+        size: "62 МБ",
         file: "LumoVibe-old-32bit-phones.apk",
       },
     ],
@@ -113,7 +141,32 @@ window.PROJECTS = [
         en: ["Android 8.0 or newer", "The first search takes a few seconds while yt-dlp is unpacked"],
       },
     },
-    changelog: [],
+    changelog: [
+      {
+        version: "1.0.0",
+        date: "2026-11-21",
+        notes: {
+          ru: [
+            "Первый релиз",
+            "Поиск и мгновенное воспроизведение, офлайн-загрузки, плейлисты и импорт из Spotify",
+            "«Моя волна», «Микс дня», радио, дизлайки и страницы исполнителей",
+            "Эквалайзер, выравнивание громкости, переходы без пауз, тексты песен",
+            "Синхронизация через Google и продолжение на другом устройстве",
+            "Ссылки и QR-коды на треки, открытие ссылок YouTube и Spotify",
+            "Русский и английский интерфейс",
+          ],
+          en: [
+            "First release",
+            "Search with instant playback, offline downloads, playlists and Spotify import",
+            "My Wave, Daily Mix, radio, dislikes and artist pages",
+            "Equalizer, volume normalization, gapless playback, lyrics",
+            "Google sync and continue on another device",
+            "Track links and QR codes, opens YouTube and Spotify links",
+            "English and Russian interface",
+          ],
+        },
+      },
+    ],
   },
   {
     id: "project-manager",

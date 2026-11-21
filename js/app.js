@@ -493,8 +493,9 @@
   }
 
   // Скриншот может быть строкой-путём или объектом { src, caption, phone }.
+  // Весь список можно задать по языкам: { ru: [...], en: [...] }.
   const shotsOf = (p) =>
-    (p.screenshots || []).map((s) => (typeof s === "string" ? { src: s, caption: "" } : { src: s.src, caption: L(s.caption) || "", phone: !!s.phone }));
+    (L(p.screenshots) || []).map((s) => (typeof s === "string" ? { src: s, caption: "" } : { src: s.src, caption: L(s.caption) || "", phone: !!s.phone }));
 
   function bindViewer(list) {
     if (!list.length) return;
