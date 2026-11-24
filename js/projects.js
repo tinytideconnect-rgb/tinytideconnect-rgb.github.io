@@ -46,7 +46,13 @@ window.SITE = {
  *                 url: "" — кнопка покажет «скоро».
  *  extraFiles   — дополнительные файлы: { platform, label, url, size, file }
  *  requirements — системные требования по платформам (необязательно)
- *  changelog    — история версий (необязательно)
+ *  changelog    — история версий, новая сверху (необязательно). Показывается на вкладке «Версии»:
+ *                 { version, date, notes, downloads, extraFiles }
+ *                 notes — список строк или разделов { title, items: [...] };
+ *                 downloads / extraFiles — файлы именно этой версии, чтобы старые
+ *                 версии тоже можно было скачать.
+ *                 Новая версия: добавьте блок в начало changelog и поменяйте
+ *                 version / updated / downloads проекта.
  */
 
 // Установщики и APK лежат в GitHub Releases: <RELEASES><тег релиза>/<имя файла>
@@ -62,14 +68,14 @@ window.PROJECTS = [
     },
     description: {
       ru:
-        "LumoVibe — бесплатный музыкальный плеер для телефона и компьютера. Найдите трек по названию или вставьте ссылку — из YouTube, YouTube Music, Spotify и других сервисов: музыка заиграет через пару секунд. Понравившееся одним нажатием скачивается и потом играет без интернета.\n\n" +
+        "LumoVibe — бесплатный музыкальный плеер для телефона и компьютера. Найдите трек по названию или вставьте ссылку — из YouTube, YouTube Music, Spotify и других сервисов: музыка заиграет через пару секунд. Понравившееся одним нажатием скачивается и потом играет без интернета, а если связь пропала посреди потока, плеер сам включит похожие скачанные треки.\n\n" +
         "«Моя волна» под настроение, «Микс дня» и подборки по вашим вкусам, радио по любому треку, страницы исполнителей, тексты песен, импорт плейлистов из Spotify. Дизлайк убирает трек из подборок.\n\n" +
-        "Звук: эквалайзер, выравнивание громкости, плавные переходы без пауз, скорость и тон. Обложка и фон плеера двигаются в такт музыке. Есть будильник с музыкой, таймер сна и режим «В машине».\n\n" +
+        "Звук: 10-полосный эквалайзер с пресетами и своими настройками, выравнивание громкости, плавные переходы без пауз, скорость и тон. Волны вокруг обложки чувствуют всю песню — тихий куплет, дроп, голос и удары, а в стиле «Инструменты» каждая линия следит за своим инструментом. Есть будильник с музыкой, таймер сна и режим «В машине».\n\n" +
         "Библиотека, плейлисты и лайки синхронизируются между телефоном и ПК через ваш аккаунт Google, а начатый трек можно продолжить на другом устройстве с того же места. Поделитесь треком ссылкой или QR-кодом — у кого стоит LumoVibe, она откроется прямо в приложении. Интерфейс на русском и английском.",
       en:
-        "LumoVibe is a free music player for your phone and PC. Search for a track by name or paste a link — from YouTube, YouTube Music, Spotify and other services: the music starts in a couple of seconds. Anything you like downloads with one tap and then plays offline.\n\n" +
+        "LumoVibe is a free music player for your phone and PC. Search for a track by name or paste a link — from YouTube, YouTube Music, Spotify and other services: the music starts in a couple of seconds. Anything you like downloads with one tap and then plays offline, and if the connection drops mid-stream, the player switches to similar downloaded tracks.\n\n" +
         "My Wave for every mood, a Daily Mix and picks for your taste, radio from any track, artist pages, lyrics, Spotify playlist import. A dislike keeps a track out of your mixes.\n\n" +
-        "Sound: equalizer, volume normalization, gapless playback and crossfade, speed and pitch. The cover and background move to the beat. There's also a music alarm, a sleep timer and a car mode.\n\n" +
+        "Sound: a 10-band equalizer with presets and your own custom curves, volume normalization, gapless playback and crossfade, speed and pitch. The waves around the cover follow the whole song — quiet verses, drops, vocals and hits — and in the Instruments style each line follows its own instrument. There's also a music alarm, a sleep timer and a car mode.\n\n" +
         "Your library, playlists and likes sync between phone and PC with your Google account, and a track you started can be continued on another device from the same spot. Share a track with a link or QR code — if the other person has LumoVibe, it opens right in the app. Interface in English and Russian.",
     },
     category: { ru: "Музыка", en: "Music" },
@@ -108,17 +114,17 @@ window.PROJECTS = [
       ],
     },
     featured: true,
-    version: "1.0.0",
-    updated: "2026-11-21",
+    version: "1.1.0",
+    updated: "2026-11-24",
     downloads: {
-      windows: { url: RELEASES + "lumovibe-v1.0.0/LumoVibe-Setup-1.0.0.exe", size: "91 МБ", file: "LumoVibe-Setup-1.0.0.exe" },
-      android: { url: RELEASES + "lumovibe-v1.0.0/LumoVibe.apk", size: "68 МБ", file: "LumoVibe.apk" },
+      windows: { url: RELEASES + "lumovibe-v1.1.0/LumoVibe-Setup-1.1.0.exe", size: "91 МБ", file: "LumoVibe-Setup-1.1.0.exe" },
+      android: { url: RELEASES + "lumovibe-v1.1.0/LumoVibe.apk", size: "68 МБ", file: "LumoVibe.apk" },
     },
     extraFiles: [
       {
         platform: "android",
         label: { ru: "APK для старых 32-битных телефонов", en: "APK for older 32-bit phones" },
-        url: RELEASES + "lumovibe-v1.0.0/LumoVibe-old-32bit-phones.apk",
+        url: RELEASES + "lumovibe-v1.1.0/LumoVibe-old-32bit-phones.apk",
         size: "62 МБ",
         file: "LumoVibe-old-32bit-phones.apk",
       },
@@ -143,8 +149,120 @@ window.PROJECTS = [
     },
     changelog: [
       {
+        version: "1.1.0",
+        date: "2026-11-24",
+        downloads: {
+          windows: { url: RELEASES + "lumovibe-v1.1.0/LumoVibe-Setup-1.1.0.exe", size: "91 МБ", file: "LumoVibe-Setup-1.1.0.exe" },
+          android: { url: RELEASES + "lumovibe-v1.1.0/LumoVibe.apk", size: "68 МБ", file: "LumoVibe.apk" },
+        },
+        extraFiles: [
+          {
+            platform: "android",
+            label: { ru: "APK для старых 32-битных телефонов", en: "APK for older 32-bit phones" },
+            url: RELEASES + "lumovibe-v1.1.0/LumoVibe-old-32bit-phones.apk",
+            size: "62 МБ",
+            file: "LumoVibe-old-32bit-phones.apk",
+          },
+        ],
+        notes: {
+          ru: [
+            {
+              title: "Звук и эквалайзер",
+              items: [
+                "Новый 10-полосный эквалайзер (32 Гц – 16 кГц): график показывает реальную кривую звука, а не просто соединённые точки",
+                "Точки на графике можно тянуть мышью или пальцем, двойной тап возвращает полосу в ноль",
+                "Свои эквалайзеры: можно создать, переименовать, сбросить и удалить. Если начать править встроенный пресет, автоматически создаётся «Мой эквалайзер»",
+                "Новые пресеты: Бас, Тихо, Хип-хоп, Электроника, Рок, Вокал, Акустика, Классика, Детализация, Мягко",
+                "Эквалайзер одинаково звучит на телефоне и на компьютере, а автоматический предусилитель не даёт звуку хрипеть",
+              ],
+            },
+            {
+              title: "Анимация под музыку",
+              items: [
+                "Волны вокруг обложки чувствуют всю песню: тихий куплет выглядит тихим, дроп и громкий припев раздувают волны всё время, пока звучат, вокал держит волны в движении, удары толкают обложку",
+                "На компьютере волны и обложка теперь двигаются в такт реальному звуку",
+                "Новый стиль волн «Инструменты»: обложка реагирует на бочку, ближняя линия на барабаны, средняя на ведущий инструмент, дальняя на голос",
+              ],
+            },
+            {
+              title: "Без интернета",
+              items: [
+                "Если пропал интернет, а трек не скачан, играют похожие скачанные треки (те же исполнители, похожие подборки, то, что вы слушали вместе)",
+                "Когда интернет возвращается, текущая песня доигрывает, и плеер возвращается в прежний плейлист или рекомендации на то же место",
+              ],
+            },
+            {
+              title: "Интерфейс",
+              items: [
+                "Новые настройки: разделы с иконками и текущим состоянием, каждый открывается отдельной страницей",
+                "Отдельный раздел «Анимация» с выбором стиля волн",
+                "Во всех меню нормальные иконки вместо эмодзи",
+                "На телефоне обложка в плеере стала крупнее: кнопки компактнее, а «Далее» сжато в одну строку",
+              ],
+            },
+            {
+              title: "Исправления",
+              items: ["На компьютере звук больше не пропадает на целый трек, когда система сильно нагружена (например, с USB-гарнитурой)"],
+            },
+          ],
+          en: [
+            {
+              title: "Sound and equalizer",
+              items: [
+                "New 10-band equalizer (32 Hz – 16 kHz) whose graph shows the real sound curve",
+                "Drag the dots to shape the sound; double-tap puts a band back to zero",
+                "Custom equalizers: create, rename, reset and delete. Editing a built-in preset creates “My EQ” automatically",
+                "New presets: Bass, Low volume, Hip-hop, Electronic, Rock, Vocal, Acoustic, Classical, Detail, Soft",
+                "The equalizer sounds the same on phone and PC, with an automatic preamp so it never distorts",
+              ],
+            },
+            {
+              title: "Music-reactive visuals",
+              items: [
+                "The waves around the cover follow the whole song: quiet verses look quiet, drops and loud choruses swell the waves for as long as they last, vocals keep them moving, hits punch the cover",
+                "On PC the waves and the cover now move to the actual sound",
+                "New “Instruments” wave style: the cover reacts to the kick, the inner line to drums, the middle one to the lead instrument, the outer one to the voice",
+              ],
+            },
+            {
+              title: "Offline",
+              items: [
+                "When the connection drops and the track isn't downloaded, similar downloaded tracks play (same artists, related mixes, what you listened to together)",
+                "When the connection is back, the current song finishes and the player returns to your playlist or recommendations where it left off",
+              ],
+            },
+            {
+              title: "Interface",
+              items: [
+                "Redesigned settings: sections with icons and their current state, each opening as its own page",
+                "New “Animation” section with the wave style choice",
+                "Proper icons instead of emoji in every menu",
+                "Bigger cover in the phone player thanks to compact controls and a one-line “Up next”",
+              ],
+            },
+            {
+              title: "Fixes",
+              items: ["On PC the sound no longer goes silent for a whole track when the system is under heavy load (for example, with a USB headset)"],
+            },
+          ],
+        },
+      },
+      {
         version: "1.0.0",
         date: "2026-11-21",
+        downloads: {
+          windows: { url: RELEASES + "lumovibe-v1.0.0/LumoVibe-Setup-1.0.0.exe", size: "91 МБ", file: "LumoVibe-Setup-1.0.0.exe" },
+          android: { url: RELEASES + "lumovibe-v1.0.0/LumoVibe.apk", size: "68 МБ", file: "LumoVibe.apk" },
+        },
+        extraFiles: [
+          {
+            platform: "android",
+            label: { ru: "APK для старых 32-битных телефонов", en: "APK for older 32-bit phones" },
+            url: RELEASES + "lumovibe-v1.0.0/LumoVibe-old-32bit-phones.apk",
+            size: "62 МБ",
+            file: "LumoVibe-old-32bit-phones.apk",
+          },
+        ],
         notes: {
           ru: [
             "Первый релиз",
@@ -213,6 +331,9 @@ window.PROJECTS = [
       {
         version: "1.0.0",
         date: "2026-11-18",
+        downloads: {
+          windows: { url: RELEASES + "project-manager-v1.0.0/ProjectManager-Setup-1.0.0.exe", size: "15 МБ", file: "ProjectManager-Setup-1.0.0.exe" },
+        },
         notes: {
           ru: ["Первый релиз", "Запуск Claude Code в папке проекта одним кликом", "Автоопределение типа проекта и обложки", "Группировка, сортировка и поиск"],
           en: ["First release", "Launch Claude Code in a project folder with one click", "Automatic project type and cover detection", "Grouping, sorting and search"],
@@ -276,6 +397,10 @@ window.PROJECTS = [
       {
         version: "1.0.0",
         date: "2026-11-18",
+        downloads: {
+          windows: { url: RELEASES + "syfl-v1.0.0/SYFL-Setup-1.0.0.exe", size: "12 МБ", file: "SYFL-Setup-1.0.0.exe" },
+          android: { url: RELEASES + "syfl-v1.0.0/SYFL-android.apk", size: "66 МБ", file: "SYFL-android.apk" },
+        },
         notes: {
           ru: ["Первый релиз", "Передача файлов, папок и текста", "Каналы: Wi-Fi / хотспот, USB-модем, USB-туннель (adb)", "Подключение по QR-коду", "Три стиля интерфейса"],
           en: ["First release", "Transfer files, folders and text", "Channels: Wi-Fi / hotspot, USB tethering, USB tunnel (adb)", "Connect with a QR code", "Three interface styles"],

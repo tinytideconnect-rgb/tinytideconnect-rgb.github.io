@@ -346,7 +346,7 @@
 
   /* ---------- Страница проекта ---------- */
 
-  function pageProject(id) {
+  function pageProject(id, tab) {
     const p = PROJECTS.find((x) => x.id === id);
     if (!p) return pageNotFound();
 
@@ -372,16 +372,9 @@
         </div>`
       : `<div class="show" style="${coverStyle(p)}"></div>`;
 
-    const changelog = (p.changelog || []).length
-      ? `<div class="panel spot"><h4>${t("changelog")}</h4>${p.changelog
-          .map(
-            (c) => `<div class="change">
-              <div class="change-head"><strong>v${esc(c.version)}</strong><span class="muted">${formatDate(c.date)}</span></div>
-              <ul>${(L(c.notes) || []).map((n) => `<li>${esc(n)}</li>`).join("")}</ul>
-            </div>`
-          )
-          .join("")}</div>`
-      : "";
+    // Вкладка «Версии»: что нового в каждой версии и её файлы (старые версии тоже можно скачать).
+    const versions = p.changelog || [];
+    const onVersions = tab === "versions" && versions.length > 0;
 
     const fileRow = (icon, name, size) =>
       `<div class="file-row"><span class="file-pl">${icon}${esc(name)}</span><span class="muted">${esc(I18N.size(size))}</span></div>`;
@@ -426,7 +419,9 @@
               ${extraLinks ? `<div class="extra-links">${extraLinks}</div>` : ""}
             </div>
             <div class="p-meta">
-              <div>${t("version")}<strong>${esc(p.version)}</strong></div>
+              ${versions.length
+                ? `<button class="p-meta-link" data-tab="versions">${t("version")}<strong>${esc(p.version)}</strong></button>`
+                : `<div>${t("version")}<strong>${esc(p.version)}</strong></div>`}
               <div>${t("updated")}<strong>${formatDate(p.updated)}</strong></div>
             </div>
           </div>
@@ -441,8 +436,16 @@
 
           <div class="p-layout">
             <div class="p-main">
-              <div class="panel spot"><h4>${t("description")}</h4><div class="prose">${paragraphs}</div></div>
-              ${changelog}
+              ${versions.length ? `
+              <div class="p-tabs" role="tablist">
+                <button class="p-tab ${onVersions ? "" : "active"}" role="tab" data-tab="about">${t("description")}</button>
+                <button class="p-tab ${onVersions ? "active" : ""}" role="tab" data-tab="versions">${t("versions")}<span class="p-tab-n">${versions.length}</span></button>
+              </div>` : ""}
+              <div class="p-pane" data-pane="about" ${onVersions ? "hidden" : ""}>
+                <div class="panel spot"><h4>${t("description")}</h4><div class="prose">${paragraphs}</div></div>
+                ${versions.length ? whatsNew(versions[0]) : ""}
+              </div>
+              ${versions.length ? `<div class="p-pane" data-pane="versions" ${onVersions ? "" : "hidden"}>${versions.map((c, i) => versionCard(c, i === 0)).join("")}</div>` : ""}
             </div>
             <aside class="p-side">
               <div class="panel spot"><h4>${t("files")}</h4>${files}</div>
@@ -453,10 +456,81 @@
         </div>
       </div>`;
 
-    return { title: `${name(p)} — ${SITE.name}`, html, after: () => bindViewer(shotList) };
+    return { title: `${name(p)} — ${SITE.name}`, html, after: () => (bindViewer(shotList), bindTabs(p)) };
   }
 
   const extrasOf = (p) => p.extraFiles || [];
+
+  /* ---------- Версии ---------- */
+  // notes — список строк или разделов { title, items }.
+
+  const listHTML = (items) => `<ul>${(L(items) || []).map((n) => `<li>${esc(n)}</li>`).join("")}</ul>`;
+
+  function notesHTML(notes) {
+    const list = L(notes) || [];
+    const plain = list.filter((n) => typeof n === "string");
+    const groups = list.filter((n) => n && typeof n === "object");
+    return (plain.length ? listHTML(plain) : "") +
+      groups.map((g) => `<div class="v-group"><h5>${esc(L(g.title))}</h5>${listHTML(g.items)}</div>`).join("");
+  }
+
+  // Короткий блок «Что нового» на вкладке описания — только названия разделов.
+  function whatsNew(c) {
+    const list = L(c.notes) || [];
+    const titles = list.filter((n) => n && typeof n === "object").map((g) => L(g.title));
+    const items = titles.length ? titles : list.slice(0, 4);
+    return `<div class="panel spot whats-new">
+      <h4>${esc(t("whatsNew", c.version))}</h4>
+      <div class="wn-chips">${items.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>
+      <button class="wn-more" data-tab="versions">${t("allChanges")} ${ICONS.arrow}</button>
+    </div>`;
+  }
+
+  function versionCard(c, current) {
+    const dl = c.downloads || {};
+    const buttons = Object.keys(PLATFORMS)
+      .filter((k) => dl[k] && dl[k].url)
+      .map((k) => `<a class="btn btn-outline btn-sm" href="${esc(dl[k].url)}" download="${esc(dl[k].file || "")}">${PLATFORMS[k].icon}<span>${PLATFORMS[k].label}</span>${dl[k].size ? `<span class="btn-sub">${esc(I18N.size(dl[k].size))}</span>` : ""}</a>`)
+      .join("");
+    const extras = (c.extraFiles || [])
+      .filter((x) => x.url)
+      .map((x) => `<a class="extra-link" href="${esc(x.url)}" download="${esc(x.file || "")}">${PLATFORMS[x.platform] ? PLATFORMS[x.platform].icon : ""}${esc(L(x.label))}${x.size ? ` · ${esc(I18N.size(x.size))}` : ""}</a>`)
+      .join("");
+    return `<details class="panel spot version" ${current ? "open" : ""}>
+      <summary>
+        <span class="v-num">v${esc(c.version)}</span>
+        ${current ? `<span class="chip chip-soon">${t("currentVersion")}</span>` : ""}
+        <span class="muted v-date">${formatDate(c.date)}</span>
+      </summary>
+      <div class="v-body">
+        ${notesHTML(c.notes)}
+        ${buttons || extras ? `
+        <div class="v-files">
+          <div class="v-files-head">${esc(t(current ? "downloadThis" : "downloadOld", c.version))}</div>
+          <div class="p-downloads">${buttons}</div>
+          ${extras ? `<div class="extra-links">${extras}</div>` : ""}
+        </div>` : ""}
+      </div>
+    </details>`;
+  }
+
+  function bindTabs(p) {
+    const tabs = $(".p-tabs");
+    if (!tabs) return;
+    const show = (tab) => {
+      $$(".p-tab").forEach((b) => b.classList.toggle("active", b.dataset.tab === tab));
+      $$(".p-pane").forEach((x) => (x.hidden = x.dataset.pane !== tab));
+      // Адрес меняется без перерисовки страницы — ссылкой на вкладку можно поделиться.
+      history.replaceState(null, "", projectUrl(p) + (tab === "versions" ? "/versions" : ""));
+    };
+    $$("[data-tab]").forEach((b) =>
+      b.addEventListener("click", () => {
+        show(b.dataset.tab);
+        // Кнопки вне панели вкладок (версия в шапке, «Все изменения») ведут к ней.
+        if (!b.classList.contains("p-tab")) tabs.scrollIntoView({ behavior: "smooth", block: "start" });
+      })
+    );
+  }
 
   /* ---------- Сообщить об ошибке ---------- */
   // Письмо заполняется само: кому, тема, приложение и устройство.
@@ -578,7 +652,7 @@
   let currentPage = null;
 
   function render() {
-    const [page, arg] = location.hash.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
+    const [page, arg, sub] = location.hash.replace(/^#\/?/, "").split("/").map(decodeURIComponent);
     const homeSections = { projects: "projects", windows: "projects", android: "projects", install: "install" };
 
     if (!page || homeSections[page]) {
@@ -594,7 +668,7 @@
       if (target) requestAnimationFrame(() => $("#" + target).scrollIntoView({ behavior: "smooth" }));
       else window.scrollTo({ top: 0 });
     } else if (page === "project") {
-      mount(pageProject(arg), "project:" + arg);
+      mount(pageProject(arg, sub), "project:" + arg);
       window.scrollTo({ top: 0 });
     } else {
       mount(pageNotFound(), "404");
